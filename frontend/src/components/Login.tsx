@@ -1,6 +1,14 @@
+import { Button } from "@mui/material";
+import AuthLayout from "../layouts/AuthLayout";
+
 const Login = () => {
   return(
-    <span>Login</span>
+    <AuthLayout>
+      <Button>
+        Create account
+      </Button>
+      <span>Login</span>
+    </AuthLayout>
   )
 }
 
