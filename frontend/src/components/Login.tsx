@@ -2,7 +2,7 @@ import { Button } from "@mui/material";
 import AuthLayout from "../layouts/AuthLayout";
 
 const Login = () => {
-  return(
+  return (
     <AuthLayout>
       <Button>
         Create account
