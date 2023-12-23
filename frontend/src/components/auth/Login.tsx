@@ -1,37 +1,27 @@
-import AuthLayout from "../../layouts/AuthLayout";
+
+import { CommandLineIcon } from "@heroicons/react/24/solid";
 
 const Login = () => {
   return (
-    <AuthLayout>
-      <div style={{
-        display: "flex",
-        justifyContent: "center",
-        width: "60%",
-        height: "100vh",
-      }}>
-        <div style={{
-          display: "flex",
-          flexDirection: "column",
-          width: "100%",
-        }}>
-
-          <input
-            id="outlined-password-input"
-            type="password"
-            style={{
-              width: "60%",
-            }}
-          />
-          <button style={{
-            padding: "16px",
-            width: "60%",
-          }}>
-          Sign In
-          </button>
+    <div className="columns-2">
+      {/* Left */}
+      <div className="container w-full h-screen">
+        <div className="mx-auto flex w-full flex-col justify-center space-y-6">
+          <div className="flex text-center ">
+            <CommandLineIcon className="h-8 w-8" />
+            <h1 className="text-2xl font-semibold">
+              Better Notion
+            </h1>
+          </div>
         </div>
       </div>
-    </AuthLayout>
+
+      {/* Right */}
+      <div className="container w-full h-screen">
+        form
+      </div>
+    </div>
   )
 }
-
 export default Login;
+
