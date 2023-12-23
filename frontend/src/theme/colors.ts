@@ -8,6 +8,7 @@ export const grey = {
 
 export const primary = {
   main: "#5577FF",
+  hover: "#0022aa",
 };
 
 export const secondary = {

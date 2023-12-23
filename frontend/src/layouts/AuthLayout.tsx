@@ -1,5 +1,4 @@
 import React from "react";
-import { Grid } from "@mui/material";
 
 interface AuthLayoutProps {
   children: React.ReactNode
@@ -7,14 +6,14 @@ interface AuthLayoutProps {
 
 const AuthLayout = ({ children }: AuthLayoutProps) => {
   return (
-    <Grid sx={{
+    <div style={{
       display: "flex",
     }}>
-      <Grid sx={{
+      <div style={{
         width: "40%",
-      }}>bannier</Grid>
+      }}>bannier</div>
       {children}
-    </Grid>
+    </div>
   )
 };
 
