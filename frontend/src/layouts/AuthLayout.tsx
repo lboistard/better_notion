@@ -11,7 +11,7 @@ const AuthLayout = ({ children }: AuthLayoutProps) => {
     <div className="columns-2">
       {/* Left */}
       <div className="container w-full h-screen bg-fixed" style={{ backgroundImage:`url(${image})` }}>
-        <div className="mx-auto flex w-full h-full flex-col justify-center space-y-6">
+        <div className="mx-auto flex w-9/12 h-full flex-col justify-center space-y-6">
 
           <div className="flex text-center justify-center align-center">
             <CommandLineIcon className="h-16 w-16" />
