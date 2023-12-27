@@ -1,28 +1,34 @@
 import axios from "axios";
 
-const API_ROOT = "http://" + import.meta.env.VITE_API_ROOT;
+const API_ROOT = import.meta.env.VITE_API_ROOT;
 
 const config = {
   baseURL: API_ROOT,
   timeout: 30000,
-};
+  withCredentials: false, // Temporary
+  headers: {
+    "Access-Control-Allow-Origin" : "*",
+    "Access-Control-Allow-Methods":"GET,PUT,POST,DELETE,PATCH,OPTIONS",
+  },
+}
 
-const requests = (method: string, url: string, body: object) => {
+
+const request = async (method: string, url: string, body: object) => {
   const client = axios.create(config);
-  const res = client.request({
-    method: method,
-    url: url,
-    data: body,
+  const { data } = await client.request({
+    method,
+    url,
+    data: {
+      body,
+    },
   });
 
-  console.log("res is :", res)
-  return res;
+  return data;
 };
 
 const Auth = {
-  login: (name: string, email: string, password: string) =>
-    requests("post", "api/", {
-      name,
+  login: async (email: string, password: string) =>
+    await request("post", "/api/auth/local", {
       username: email,
       password: password,
       grant_type: "password",

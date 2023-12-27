@@ -1,8 +1,10 @@
 import { Navigate, Outlet } from "react-router-dom";
+import { useStore } from "@/hooks/useStore";
 
 const PrivateRoutes = () => {
-  // TODO : mobx store to handle this
-  const isAuth = false;
+  const store = useStore();
+
+  const { isAuth } = store.authStore;
 
   return isAuth ? <Outlet /> : <Navigate to="/login" />
 }

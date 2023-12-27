@@ -1,12 +1,49 @@
+import React from "react";
+import { useNavigate } from "react-router-dom";
+
+/* UI */
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Link } from "react-router-dom";
-
+/* Components */
 import AuthLayout from "@/layouts/AuthLayout";
-import GoogleImage from "../../resources/images/GoogleIcon";
+import GoogleImage from "@/resources/images/GoogleIcon";
+import { useStore } from "@/hooks/useStore";
+import { ERROR, LOADING } from "@/constants/asyncStatus";
 
 const Login = () => {
+  const navigate = useNavigate();
+  const store = useStore();
+
+  const { authStore } = store;
+
+  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    authStore.setEmail(e.target.value);
+  };
+
+  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    authStore.setPassword(e.target.value);
+  };
+
+  const handleLogin = async () => {
+    const canAuth: boolean = await authStore.login("lucas.boistard@gmail.com", "123456");
+    if (canAuth) {
+      navigate("/");
+    }
+  }
+
+  if (authStore.loginStatus === ERROR) {
+    return (
+      <>Error while login</>
+    )
+  }
+  if (authStore.loginStatus === LOADING) {
+    return (
+      <>loading...</>
+    )
+  }
+
   return (
     <AuthLayout>
       {/* Right - Form */}
@@ -33,10 +70,12 @@ const Login = () => {
               <div className="grid w-full items-center gap-1.5">
                 <Label className="text-grey-7 font-medium text-sm">Email</Label>
                 <Input
+                  className="bg-gray-50 border border-grey-4 text-grey-7 text-sm rounded-lg p-4 w-full"
                   type="email"
                   id="email"
                   placeholder="Email"
-                  className="bg-gray-50 border border-grey-4 text-grey-7 text-sm rounded-lg p-4 w-full"/>
+                  onChange={handleEmailChange}
+                />
               </div>
             </div>
             <div className="my-3">
@@ -48,10 +87,12 @@ const Login = () => {
                   </Label>
                 </div>
                 <Input
+                  className="bg-gray-50 border border-grey-4 text-grey-7 text-sm rounded-lg p-4 w-full"
                   type="password"
                   id="password"
                   placeholder="Password"
-                  className="bg-gray-50 border border-grey-4 text-grey-7 text-sm rounded-lg p-4 w-full"/>
+                  onChange={handlePasswordChange}
+                />
               </div>
             </div>
             <div className="my-3 flex items-center">
@@ -59,11 +100,15 @@ const Login = () => {
                 className="w-4 h-4 border-grey-3 rounded mr-2"/>
               <Label htmlFor="rememberMe" className="text-grey-7 font-medium">Remember me</Label>
             </div>
+            <Button
+              className="login-cta w-full flex justify-center items-center my-3"
+              onClick={() => handleLogin()}
+              type="button"
+            >
+            Login
+            </Button>
           </form>
 
-          <Button className="login-cta flex justify-center items-center my-3">
-            Login
-          </Button>
 
           <div className="flex justify-center mt-4">
             <label className="ms-2 text-sm font-medium text-grey-4 dark:text-gray-300">

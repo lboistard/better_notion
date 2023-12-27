@@ -1,6 +1,6 @@
 /* eslint-disable */
 interface SVGProps {
-  props: any
+  props: any,
 }
 
 export default (props: SVGProps) => (
