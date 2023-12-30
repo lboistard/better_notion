@@ -8,7 +8,7 @@ import { Label } from "@/components/ui/label";
 import { Link } from "react-router-dom";
 /* Components */
 import AuthLayout from "@/layouts/AuthLayout";
-import GoogleImage from "@/resources/images/GoogleIcon";
+import GithubIcon from "@/resources/images/GithubIcon";
 import { useStore } from "@/hooks/useStore";
 import { ERROR, LOADING } from "@/constants/asyncStatus";
 
@@ -54,8 +54,13 @@ const Login = () => {
             You can login with your registered account or quick login with your Google account.
           </span>
 
-          <Button className="login-with-google flex justify-center items-center my-3">
-            <GoogleImage className="w-4 h-4 mr-4"/>Login with Google
+          <Button className="login-with-google p-0">
+            <Link
+              className="flex justify-center items-center my-3"
+              to={"http://localhost:3000/api/auth/github"}
+            >
+              <GithubIcon className="w-6 h-6 invert mr-4"/>Login with Github
+            </Link>
           </Button>
 
           <div className="relative flex items-center my-3">

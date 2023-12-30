@@ -3,6 +3,7 @@ import PrivateRoutes from "./routing/PrivateRoutes";
 import Home from "./pages/Home";
 import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
+import Error from "../src/pages/Error";
 
 const App = () => {
   return (
@@ -14,6 +15,7 @@ const App = () => {
 
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/error" element={<Error />} />
 
       </Routes>
     </BrowserRouter>
