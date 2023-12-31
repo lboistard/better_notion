@@ -1,7 +1,6 @@
-
-const { MongoClient, ServerApiVersion } = require('mongodb');
+const mongoose = require("mongoose");
 const app = require('./app')
-
+const session = require("express-session");
 
 
 const port = process.env.PORT || 3000;
@@ -14,23 +13,20 @@ app.listen(port, () => {
 /**
  * Mongo
  */
-const client = new MongoClient(
-  process.env.MONGO_URI, 
-  {
-    serverApi: {
-      version: ServerApiVersion.v1,
-      strict: true,
-      deprecationErrors: true,
-    }
-  } 
+mongoose.connect(process.env.MONGO_URI, {
+  socketTimeoutMS: 45000, // Close sockets after 45 seconds of inactivity
+  maxPoolSize: 100,
+})
+
+
+app.use(
+  session({
+    secret: "secret",
+    resave: false,
+    saveUninitialized: false,
+    // cookie: {
+    //   domain: app.get("env") === "development" ? null : process.env.HOST,
+    //   maxAge: 2419200000,
+    // },
+  }),
 );
-async function run() {
-  try {
-    await client.connect();
-    await client.db("admin").command({ ping: 1 });
-    console.log("Pinged your deployment. You successfully connected to MongoDB!");
-  } finally {
-    await client.close();
-  }
-}
-run().catch(console.dir);
