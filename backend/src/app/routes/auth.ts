@@ -19,8 +19,11 @@ router.get('/github',
 router.get('/github/callback', 
   passport.authenticate('github'),
   (req: any, res: any) => {
-    const token = req.user.refresh_token;
-    return res.redirect(`http://localhost:5173/oauth-callback?token=${token}`)
+    const access_token = req.user.access_token;
+    const refresh_token = req.user.refresh_token;
+    return res.redirect(
+      `http://localhost:5173/oauth-callback?access_token=${access_token}&refresh_token=${refresh_token}`
+    )
   }
 );
 

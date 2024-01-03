@@ -1,5 +1,6 @@
-import { makeAutoObservable, computed, observable, action } from "mobx";
+import { makeAutoObservable, observable, action } from "mobx";
 import { isEmpty } from "lodash";
+import Cookies from "js-cookie";
 
 import { ERROR, IDLE, LOADING, SUCCESS } from "@/constants/asyncStatus";
 import agent from "../agent";
@@ -14,7 +15,6 @@ class AuthStore {
     this.rootStore = rootStore;
   }
 
-  @observable authorization = "";
   @observable loginStatus = IDLE;
   @observable errors = undefined;
   @observable values = {
@@ -42,7 +42,7 @@ class AuthStore {
   }
 
   @action isAuth = () => {
-    return !isEmpty(this.authorization) ? true : false
+    return !isEmpty(Cookies.get("refresh_token")) ? true : false
   }
 
   @action login = async (email: string, password: string) => {
@@ -53,7 +53,8 @@ class AuthStore {
         password
       );
 
-      this.setToken(token);
+      // TODO: Rework this :)
+      this.setToken("", token);
       this.loginStatus = SUCCESS;
 
       return true;
@@ -63,12 +64,12 @@ class AuthStore {
       return false;
     }
   }
-  @action setToken(token: string) {
-    this.authorization = token
+  @action setToken(access_token: string, refresh_token: string) {
+    Cookies.set("refresh_token", `Bearer ${refresh_token}`, { expires: 7, secure: true });
+    Cookies.set("access_token", access_token, { expires: 365, secure: true });
   }
-
   @action logout() {
-    this.setToken("");
+    this.setToken("", "");
     return Promise.resolve();
   }
 }
