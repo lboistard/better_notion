@@ -1,5 +1,4 @@
 import AuthStore from "./auth.store";
-
 class RootStore {
   authStore: AuthStore;
 

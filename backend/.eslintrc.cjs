@@ -1,6 +1,7 @@
-{
-  "extends": [
-    "airbnb-base"
+module.exports = {
+  'extends': [
+    'eslint:recommended', 
+    'plugin:@typescript-eslint/recommended'
   ],
   "env": {
     "node": true,
@@ -10,11 +11,8 @@
   "parserOptions": {
     "ecmaVersion": 2020
   },
-  "plugins": [
-    "no-only-tests"
-  ],
   "rules": {
-    "quotes": ["warn", "double"],
+    "quotes": ["error", "double"],
     "vars-on-top": "off",
     "no-else-return": "off",
     "no-underscore-dangle": "off",

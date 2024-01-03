@@ -1,15 +1,33 @@
 module.exports = {
-  root: true,
-  env: { browser: true, es2020: true },
-  extends: [
-    'eslint:recommended',
-    'plugin:@typescript-eslint/recommended',
-    'plugin:react-hooks/recommended',
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended",
   ],
-  ignorePatterns: ['dist', '.eslintrc.cjs'],
-  parser: '@typescript-eslint/parser',
-  plugins: ['react-refresh'],
-  rules: {
+  "plugins": [
+    "react",
+    "react-hooks",
+    "@typescript-eslint",
+  ],
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+  },
+  "env": {
+    "browser": true,
+    "node": true,
+    "es6": true,
+    "jest": true,
+  },
+  "ignorePatterns": [
+    "node_modules",
+    "build",
+    "dist",
+    "public",
+  ],
+  "rules": {
+    "react/jsx-uses-react": "off",
+    "react/react-in-jsx-scope": "off",
     "prefer-const": 1,
     "quotes": ["warn", "double"],
     "vars-on-top": "off",
@@ -30,9 +48,9 @@ module.exports = {
     "block-spacing": "warn",
     "dot-location": "warn",
     "brace-style": ["warn", "1tbs", {
-      "allowSingleLine": true
+      "allowSingleLine": true,
     }],
-    "object-curly-newline": ["warn", {"consistent": true}],
+    "object-curly-newline": ["warn", { "consistent": true }],
     "object-curly-spacing": ["warn", "always"],
     "keyword-spacing": "warn",
     "space-before-blocks": "warn",
@@ -41,24 +59,24 @@ module.exports = {
       "warn", {
         "anonymous": "never",
         "named": "never",
-        "asyncArrow": "always"
-      }
+        "asyncArrow": "always",
+      },
     ],
     "no-trailing-spaces": "warn",
     "space-in-parens": "warn",
     "semi-spacing": "warn",
     "no-multi-spaces": "warn",
     "eqeqeq": "warn",
-    "comma-dangle": [ 
+    "comma-dangle": [
       "error", {
         "arrays": "always-multiline",
         "objects": "always-multiline",
         "imports": "always-multiline",
         "exports": "always-multiline",
-        "functions": "never"
-      }
+        "functions": "never",
+      },
     ],
     "comma-spacing": "warn",
-    "indent": ["warn", 2, { "SwitchCase": 1, "offsetTernaryExpressions": true }]
+    "indent": ["warn", 2, { "SwitchCase": 1, "offsetTernaryExpressions": true }],
   },
 }

@@ -1,12 +1,12 @@
 import { Navigate, Outlet } from "react-router-dom";
 import { useStore } from "@/hooks/useStore";
+import { useEffect } from "react";
 
 const PrivateRoutes = () => {
   const store = useStore();
+  const { authStore } = store;
 
-  const { isAuth } = store.authStore;
-
-  return isAuth ? <Outlet /> : <Navigate to="/login" />
+  return authStore.isAuth() ? <Outlet /> : <Navigate to="/login" />
 }
 
 

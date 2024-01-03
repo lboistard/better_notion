@@ -47,7 +47,7 @@ const Login = () => {
   return (
     <AuthLayout>
       {/* Right - Form */}
-      <div className="flex justify-center items-center w-full h-screen">
+      <div className='flex justify-center items-center w-full h-screen'>
         <div className="w-8/12 flex flex-col">
           <h1 className="text-3xl font-bold my-3">Login</h1>
           <span className="font-extralight w-50 my-3">

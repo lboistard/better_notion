@@ -4,7 +4,6 @@ import { isEmpty } from "lodash";
 import { ERROR, IDLE, LOADING, SUCCESS } from "@/constants/asyncStatus";
 import agent from "../agent";
 import RootStore from "./root.store";
-import commonStore from "./common.store";
 
 class AuthStore {
 
@@ -42,8 +41,8 @@ class AuthStore {
     this.values.password = "";
   }
 
-  @computed get isAuth() {
-    return !isEmpty(commonStore.token) ? true : false
+  @action isAuth = () => {
+    return !isEmpty(this.authorization) ? true : false
   }
 
   @action login = async (email: string, password: string) => {
@@ -54,7 +53,7 @@ class AuthStore {
         password
       );
 
-      commonStore.setToken(token.split(" ")[1]);
+      this.setToken(token);
       this.loginStatus = SUCCESS;
 
       return true;
@@ -64,9 +63,12 @@ class AuthStore {
       return false;
     }
   }
+  @action setToken(token: string) {
+    this.authorization = token
+  }
 
   @action logout() {
-    commonStore.setToken("");
+    this.setToken("");
     return Promise.resolve();
   }
 }

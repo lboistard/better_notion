@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
 import Error from "../src/pages/Error";
+import OAuthCallback from "./components/auth/OAuthCallback";
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
         <Route path="/register" element={<Register />} />
         <Route path="/error" element={<Error />} />
 
+        <Route path={"/oauth-callback"} element={<OAuthCallback />} />
       </Routes>
     </BrowserRouter>
   )

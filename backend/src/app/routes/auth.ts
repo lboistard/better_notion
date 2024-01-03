@@ -19,12 +19,10 @@ router.get('/github',
 router.get('/github/callback', 
   passport.authenticate('github'),
   (req: any, res: any) => {
-    console.log("oui oui :) ")
-    // return fake token for now
-    return res.status(200).json({
-      token: "Bearer 19065dd31c46b99c6288baf89f461c5dbd3c8ed84187c832c7005a72e5582f28"
-    })
+    const token = req.user.refresh_token;
+    return res.redirect(`http://localhost:5173/oauth-callback?token=${token}`)
   }
 );
+
 
 module.exports = router;
