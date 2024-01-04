@@ -1,6 +1,4 @@
 /** @type {import('tailwindcss').Config} */
-const defaultTheme = require("tailwindcss/defaultTheme")
-
 
 module.exports = {
   content: ["./src/**/*.{ts,tsx}"],
@@ -60,16 +58,16 @@ module.exports = {
     },
     colors: {
       white: "#FFF",
-      black: "#000",
+      black: "#28282B",
+      title: "#4D5E80",
       main: "#111213",
       grey: {
-        1: "#F5FFFC",
-        2: "#C6C3CD",
-        3: "#9896A3",
-        4: "#82808F",
-        5: "#56555C",
-        6: "#1d1e20",
-        7: "#111213",
+        1: "#C3CAD9",
+        2: "#ADB8CC",
+        3: "#99A6BF",
+        4: "#7D8FB3",
+        5: "#7C8AA6",
+        6: "#1A2233",
       },
       primary: {
         main: "#5577FF",

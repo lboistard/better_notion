@@ -49,17 +49,17 @@ const Login = () => {
       {/* Right - Form */}
       <div className='flex justify-center items-center w-full h-screen'>
         <div className="w-8/12 flex flex-col">
-          <h1 className="text-3xl font-bold my-3">Login</h1>
-          <span className="font-extralight w-50 my-3">
-            You can login with your registered account or quick login with your Google account.
+          <h1 className="text-3xl font-bold my-3 text-black">Login</h1>
+          <span className="font-extralight w-50 my-3 text-black">
+            You can login with your registered account or quick login with your Github account.
           </span>
 
-          <Button className="login-with-google p-0">
+          <Button className="login-with-github p-0">
             <Link
               className="flex justify-center items-center my-3"
               to={"http://localhost:3000/api/auth/github"}
             >
-              <GithubIcon className="w-6 h-6 invert mr-4"/>Login with Github
+              <GithubIcon className="w-6 h-6 invert mr-4 text-black"/>Login with Github
             </Link>
           </Button>
 
@@ -73,9 +73,9 @@ const Login = () => {
           <form>
             <div className="my-3">
               <div className="grid w-full items-center gap-1.5">
-                <Label className="text-grey-7 font-medium text-sm">Email</Label>
+                <Label className="font-medium text-sm text-black">Email</Label>
                 <Input
-                  className="bg-gray-50 border border-grey-4 text-grey-7 text-sm rounded-lg p-4 w-full"
+                  className="bg-gray-50 border border-grey-4 text-black text-sm rounded-lg p-4 w-full"
                   type="email"
                   id="email"
                   placeholder="Email"
@@ -86,13 +86,13 @@ const Login = () => {
             <div className="my-3">
               <div className="grid w-full items-center gap-1.5">
                 <div className="flex justify-between">
-                  <Label className="text-grey-7 font-medium text-sm">Password</Label>
-                  <Label className="text-error-main text-sm font-semibold hover:text-error-200 cursor-pointer">
+                  <Label className="font-medium text-sm text-black">Password</Label>
+                  <Label className="text-error-main text-sm font-semibold hover:text-error-200 cursor-pointer ">
                     Forgot Password?
                   </Label>
                 </div>
                 <Input
-                  className="bg-gray-50 border border-grey-4 text-grey-7 text-sm rounded-lg p-4 w-full"
+                  className="bg-gray-50 border border-grey-4 text-black text-sm rounded-lg p-4 w-full"
                   type="password"
                   id="password"
                   placeholder="Password"
@@ -103,7 +103,7 @@ const Login = () => {
             <div className="my-3 flex items-center">
               <Input type="checkbox" id="rememberMe"
                 className="w-4 h-4 border-grey-3 rounded mr-2"/>
-              <Label htmlFor="rememberMe" className="text-grey-7 font-medium">Remember me</Label>
+              <Label htmlFor="rememberMe" className="text-black font-medium">Remember me</Label>
             </div>
             <Button
               className="login-cta w-full flex justify-center items-center my-3"
