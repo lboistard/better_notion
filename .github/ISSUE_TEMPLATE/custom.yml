@@ -2,10 +2,6 @@ name: New feature
 description: Suggest or request a new feature
 labels: ["enhancement"]
 body:
-  - type: markdown
-    attributes:
-      value: |
-        Please fill out the sections below to properly describe the new feature you are suggesting.
   - type: textarea
     id: description
     attributes:
