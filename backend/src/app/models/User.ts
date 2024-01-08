@@ -1,4 +1,4 @@
-import { Model, Schema, HydratedDocument, model } from 'mongoose';
+import { Schema, model } from "mongoose";
 
 interface IUser {
   name: string;
@@ -21,15 +21,15 @@ const userSchema = new Schema<IUser, {}, IUserMethods>({
     type: String, 
     index: true,
     unique: true,
-    sparse: true,
+    sparse: true
   },
   avatar: String,
   githubId: {
     type: String,
-    unique: true,
+    unique: true
   },
-  accessToken: String,
-}, 
+  accessToken: String
+} 
 );
 
 
@@ -39,6 +39,6 @@ userSchema.method("updateAccessToken", function updateAccessToken(accessToken) {
 });
 
 
-const User = model<IUser>('User', userSchema);
+const User = model<IUser>("User", userSchema);
 
 module.exports = User;
