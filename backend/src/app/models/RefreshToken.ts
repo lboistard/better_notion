@@ -1,7 +1,6 @@
-import { Model, Schema, model } from 'mongoose';
+import { Model, Schema, model } from "mongoose";
 const jwt = require("jsonwebtoken");
 
-const User = require("./User");
 interface IRefreshToken {
   userId: Schema.Types.ObjectId;
   token: string;
@@ -17,12 +16,12 @@ const refreshTokenSchema = new Schema<IRefreshToken, IRefreshTokenModel>({
   token: {
     type: String,
     unique: true,
-    required: true,
+    required: true
   },
   created: {
     type: Date,
-    default: Date.now,
-  },
+    default: Date.now
+  }
 });
 
 refreshTokenSchema.static("createTokenForUser", async function createTokenForUser(userId: string): Promise<string> {
@@ -34,7 +33,7 @@ refreshTokenSchema.static("createTokenForUser", async function createTokenForUse
    
   await new RefreshToken({
     userId: userId,
-    token: refreshTokenValue,
+    token: refreshTokenValue
   }).save(); 
 
   return refreshTokenValue;

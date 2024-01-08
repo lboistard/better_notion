@@ -1,6 +1,6 @@
 export {}; 
 const GitHubStrategy = require("passport-github2"); 
-const passport = require('passport');
+const passport = require("passport");
 
 const User = require("../models/User");
 const RefreshToken = require("../models/RefreshToken");
@@ -37,7 +37,7 @@ passport.use(new GitHubStrategy({
 
   return done(null, {
     access_token: accessToken,
-    refresh_token: refreshTokenValue,
+    refresh_token: refreshTokenValue
   });
 }));
 
