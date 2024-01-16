@@ -1,12 +1,12 @@
 import { Schema, model } from "mongoose";
 
-interface IRefreshToken {
+interface IAccessToken {
   userId: Schema.Types.ObjectId;
   token: string;
   created: Date;
 }
 
-const refreshTokenSchema = new Schema<IRefreshToken>({
+const accessTokenSchema = new Schema<IAccessToken>({
   userId: { type: Schema.Types.ObjectId, ref: "User" },
   token: {
     type: String,
@@ -19,6 +19,6 @@ const refreshTokenSchema = new Schema<IRefreshToken>({
   }
 });
 
-const RefreshToken = model<IRefreshToken>("RefreshToken", refreshTokenSchema);
+const AccessToken = model<IAccessToken>("AccessToken", accessTokenSchema);
 
-export default RefreshToken;
+export default AccessToken;

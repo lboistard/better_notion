@@ -1,17 +1,68 @@
+export {};
+
 const express = require("express");
 const router = express.Router();
 const passport = require("passport");
+const crypto = require("node:crypto");
 
+const User = require("../models/User");
+const oauth2 = require("../auth/oauth2");
+
+/**
+ * Email/Password Oauth
+ */
+// Handle email/password register
 router.post(
-  "/local",
-  (req: any, res: any) => {
-    // return fake token for now
-    return res.status(200).json({
-      token: "Bearer 19065dd31c46b99c6288baf89f461c5dbd3c8ed84187c832c7005a72e5582f28"
-    });
+  "/register",
+  async (req: any, res: any, next: any) => {
+    try {
+      const {
+        body: {  email, password, name }
+      } = req;
+
+      const user = await User.findOne({email});
+
+      if(user){
+        return res.status(400).json({
+          message: "User already exists with this email."
+        })
+      }
+
+      const salt = crypto.randomBytes(128).toString("hex");
+      const hashedPassword = crypto.pbkdf2Sync(password, salt, 20000, 512, "sha512").toString("hex");
+
+      const newUser = await new User({
+        name, 
+        email,
+        hashedPassword,
+        salt,
+      }).save();
+
+      return res.status(200).json({
+        message: "User created with success", 
+        user: {
+          name: newUser.name,
+          email: newUser.email,
+        }
+      });
+    } catch (error) {
+      console.log(error)
+      return res.status(500).json({
+        message: "An error occured"
+      });
+    }
   }
 );
 
+// Handle email/password login
+router.use(
+  "/login",
+  oauth2,
+);
+
+/**
+ * Github Oauth
+ */
 router.get("/github",
   passport.authenticate("github", { scope: [ "user:email" ] })
 );

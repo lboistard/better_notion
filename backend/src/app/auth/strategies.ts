@@ -3,12 +3,11 @@ const GitHubStrategy = require("passport-github2");
 const passport = require("passport");
 
 const User = require("../models/User");
-const RefreshToken = require("../models/RefreshToken");
-
 
 passport.serializeUser((user: any, done: any) => done(null, user));
 passport.deserializeUser((user: any, done: any) => done(null, user));
 
+// WIP
 passport.use(new GitHubStrategy({
   clientID: process.env.GITHUB_CLIENT_ID,
   clientSecret: process.env.GITHUB_CLIENT_SECRET,
@@ -27,17 +26,10 @@ passport.use(new GitHubStrategy({
       accessToken
     }).save();
 
-    const refreshTokenValue = await RefreshToken.createTokenForUser(newUser._id);
 
-    return done(null, accessToken, refreshTokenValue);
+    return done(null, accessToken, refreshToken);
   }
-  //update user accessToken
-  user.updateAccessToken(accessToken);
-  const refreshTokenValue = await RefreshToken.createTokenForUser(user._id);
 
-  return done(null, {
-    access_token: accessToken,
-    refresh_token: refreshTokenValue
-  });
+  return done(null, { access_token: accessToken });
 }));
 

@@ -7,6 +7,7 @@ const app = express();
 const passport = require("passport");
 const session = require("express-session");
 
+const api = require("./api");
 require("./auth/strategies");
 
 app.use(cors());
@@ -23,8 +24,6 @@ app.use(
 
 app.use(passport.initialize());
 app.use(passport.session());
-
-const auth = require("./routes/auth");
-app.use("/api/auth", auth)
+app.use("/api", api);
 
 module.exports = app;
