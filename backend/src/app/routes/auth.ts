@@ -1,6 +1,6 @@
 export {};
 
-const express = require("express");
+import express,{ Request, Response, NextFunction } from 'express';
 const router = express.Router();
 const passport = require("passport");
 const crypto = require("node:crypto");
@@ -14,7 +14,7 @@ const oauth2 = require("../auth/oauth2");
 // Handle email/password register
 router.post(
   "/register",
-  async (req: any, res: any, next: any) => {
+  async  (req: Request, res: Response, next: NextFunction) => {
     try {
       const {
         body: {  email, password, name }
@@ -69,9 +69,9 @@ router.get("/github",
   
 router.get("/github/callback", 
   passport.authenticate("github"),
-  (req: any, res: any) => {
-    const access_token = req.user.access_token;
-    const refresh_token = req.user.refresh_token;
+  (req: any, res: Response) => {
+    const access_token = req?.user?.access_token;
+    const refresh_token = req?.user?.refresh_token;
     return res.redirect(
       `http://localhost:5173/oauth-callback?access_token=${access_token}&refresh_token=${refresh_token}`
     )

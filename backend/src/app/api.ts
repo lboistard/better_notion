@@ -1,4 +1,8 @@
 import express = require("express");
+
+const authAPI = require("./routes/auth");
+const userAPI = require("./routes/user");
+
 const router = express.Router();
 
 router.get(
@@ -8,7 +12,9 @@ router.get(
   }
 );
 
-const auth = require("./routes/auth")
-router.use("/auth", auth)
+
+router.use("/auth", authAPI)
+router.use("/user", userAPI)
+
 
 module.exports = router;

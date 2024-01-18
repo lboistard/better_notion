@@ -5,6 +5,7 @@ import AccessToken from "./AccessToken";
 import RefreshToken from "./RefreshToken";
 
 interface IUser {
+  _id: string,
   name: string;
   email: string;
   avatar?: string;
@@ -55,11 +56,11 @@ const createTokensForUser = async function(this: any) {
   const refreshTokenValue = crypto.randomBytes(32).toString("hex");
 
   const accessToken = await new AccessToken({
-    user: this._id,
+    userId: this._id,
     token: accessTokenValue,
   }).save();
   const refreshToken = await new RefreshToken({
-    user: this._id,
+    userId: this._id,
     token: refreshTokenValue,
   }).save();
   
