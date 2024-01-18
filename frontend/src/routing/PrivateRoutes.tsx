@@ -1,11 +1,8 @@
-import { Navigate, Outlet } from "react-router-dom";
-import { useStore } from "@/hooks/useStore";
+import { Navigate } from "react-router-dom";
 
 const PrivateRoutes = () => {
-  const store = useStore();
-  const { authStore } = store;
-
-  return authStore.isAuth() ? <Outlet /> : <Navigate to="/login" />
+  // check auth here
+  return <Navigate to="/login" />
 }
 
 

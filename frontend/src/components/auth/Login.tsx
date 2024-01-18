@@ -1,6 +1,3 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
-
 /* UI */
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -9,40 +6,8 @@ import { Link } from "react-router-dom";
 /* Components */
 import AuthLayout from "@/layouts/AuthLayout";
 import GithubIcon from "@/resources/images/GithubIcon";
-import { useStore } from "@/hooks/useStore";
-import { ERROR, LOADING } from "@/constants/asyncStatus";
 
 const Login = () => {
-  const navigate = useNavigate();
-  const store = useStore();
-
-  const { authStore } = store;
-
-  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    authStore.setEmail(e.target.value);
-  };
-
-  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    authStore.setPassword(e.target.value);
-  };
-
-  const handleLogin = async () => {
-    const canAuth: boolean = await authStore.login("lucas.boistard@gmail.com", "123456");
-    if (canAuth) {
-      navigate("/");
-    }
-  }
-
-  if (authStore.loginStatus === ERROR) {
-    return (
-      <>Error while login</>
-    )
-  }
-  if (authStore.loginStatus === LOADING) {
-    return (
-      <>loading...</>
-    )
-  }
 
   return (
     <AuthLayout>
@@ -79,7 +44,6 @@ const Login = () => {
                   type="email"
                   id="email"
                   placeholder="Email"
-                  onChange={handleEmailChange}
                 />
               </div>
             </div>
@@ -96,7 +60,6 @@ const Login = () => {
                   type="password"
                   id="password"
                   placeholder="Password"
-                  onChange={handlePasswordChange}
                 />
               </div>
             </div>
@@ -107,7 +70,6 @@ const Login = () => {
             </div>
             <Button
               className="login-cta w-full flex justify-center items-center my-3"
-              onClick={() => handleLogin()}
               type="button"
             >
             Login

@@ -27,6 +27,13 @@ const request = async (method: string, url: string, body: object) => {
 };
 
 const Auth = {
+  register: async (name: string, email: string, password: string) =>
+    await request("post", "/api/auth/register", {
+      name,
+      email,
+      password,
+    }),
+
   login: async (email: string, password: string) =>
     await request("post", "/api/auth/local", {
       username: email,
