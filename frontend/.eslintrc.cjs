@@ -26,6 +26,7 @@ module.exports = {
     "public",
   ],
   "rules": {
+    "@typescript-eslint/no-explicit-any": "off",
     "react/jsx-uses-react": "off",
     "react/react-in-jsx-scope": "off",
     "prefer-const": 1,

@@ -1,3 +1,6 @@
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 /* UI */
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -6,8 +9,38 @@ import { Link } from "react-router-dom";
 /* Components */
 import AuthLayout from "@/layouts/AuthLayout";
 import GithubIcon from "@/resources/images/GithubIcon";
+import ApiManager from "@/apiManager/ApiManager";
+
+/* Store */
+import { getActions } from "@/stores/auth.store";
 
 const Login = () => {
+  const navigate = useNavigate();
+  const [ email, setEmail ] = useState("");
+  const [ password, setPassword ] = useState("");
+  const { setAccessToken, setRefreshToken } = getActions();
+
+  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(e.target.value);
+  };
+
+  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPassword(e.target.value);
+  };
+
+  const handleLogin = async () => {
+    const response: any = await ApiManager.login({
+      "username": email,
+      "password": password,
+      "grant_type": "password",
+    });
+    const accessToken = response.access_token;
+    const refreshToken = response.refresh_token;
+    setAccessToken(accessToken);
+    setRefreshToken(refreshToken);
+
+    navigate("/");
+  }
 
   return (
     <AuthLayout>
@@ -44,6 +77,8 @@ const Login = () => {
                   type="email"
                   id="email"
                   placeholder="Email"
+                  value={email}
+                  onChange={handleEmailChange}
                 />
               </div>
             </div>
@@ -60,6 +95,8 @@ const Login = () => {
                   type="password"
                   id="password"
                   placeholder="Password"
+                  value={password}
+                  onChange={handlePasswordChange}
                 />
               </div>
             </div>
@@ -71,6 +108,7 @@ const Login = () => {
             <Button
               className="login-cta w-full flex justify-center items-center my-3"
               type="button"
+              onClick={() => handleLogin()}
             >
             Login
             </Button>
