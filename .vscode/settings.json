@@ -1,11 +1,22 @@
 {
-  "eslint.validate": [
-    "javascript",
-    "javascriptreact",
-    "typescript",
-    "typescriptreact"
-  ],
+  "eslint.validate": [ "javascript", "javascriptreact", "html", "typescriptreact" ],
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit"
   },
+  "[typescriptreact]": {
+    "editor.formatOnSave": true
+  },
+  "eslint.workingDirectories": [
+    "./backend", 
+    "./frontend"
+  ],
+  "tailwindCSS.includeLanguages": {
+      "html": "html",
+      "javascript": "javascript",
+      "typescript": "typescript",
+      "css": "css"
+  },
+  "editor.quickSuggestions": {
+      "strings": true
+  }
 }

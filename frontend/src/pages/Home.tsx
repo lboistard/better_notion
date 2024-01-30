@@ -1,17 +1,14 @@
-import Topbar from "@/components/topbar/Topbar";
-import UserMenu from "@/components/menu/UserMenu";
+import TopBar from "@/components/topbar/TopBar";
 import AppLayout from "@/layouts/AppLayout";
 
 const Home = () => {
   return (
-    <>
-      <Topbar />
-      <div className="flex">
-        <UserMenu />
-        <AppLayout />
-      </div>
-    </>
-  )
-}
+    <div className="flex">
+      <AppLayout>
+        <TopBar />
+      </AppLayout>
+    </div>
+  );
+};
 
 export default Home;

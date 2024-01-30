@@ -1,22 +1,20 @@
 @tailwind base;
 @tailwind components;
+@tailwind utilities;
 
 @layer base {
   html {
     font-family: "Plus Jakarta Sans";
     color: "#111213";
   }
-
 }
 
-.login-with-github{
-  @apply p-3 bg-black font-semibold rounded-lg text-white mt-4;
-  @apply hover:bg-grey-6;
-}
 
-.login-cta{
-  @apply p-3 bg-error-main text-white mt-5 rounded-lg;
-  @apply hover:bg-error-200;
-}
 
-@tailwind utilities;
+
+.resizeHandleSidebar {
+  @apply border-r-1 border-border w-0
+}
+.resizeHandleSidebar > div {
+  @apply relative w-fit right-[7px] top-[50%] bg-border py-1 rounded-sm text-grey-4
+}

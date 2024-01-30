@@ -59,8 +59,10 @@ module.exports = {
     colors: {
       white: "#FFF",
       black: "#28282B",
-      title: "#4D5E80",
+      title: "#0D062D",
       main: "#111213",
+      border: "#DBDBDB",
+      search: "#F5F5F5",
       grey: {
         1: "#C3CAD9",
         2: "#ADB8CC",
@@ -68,6 +70,7 @@ module.exports = {
         4: "#7D8FB3",
         5: "#7C8AA6",
         6: "#1A2233",
+        7: "#787486",
       },
       primary: {
         main: "#5577FF",
@@ -77,6 +80,7 @@ module.exports = {
         400: "#9aa2ff",
         500: "#acb1ff",
         600: "#bec0ff",
+        700: "rgba(80, 48, 229, 0.08)",
       },
       secondary: {
         main: "#7B68EE",
@@ -127,6 +131,12 @@ module.exports = {
     extend: {
       fontFamily: {
         body: ["Plus Jakarta Sans", "sans-serif"],
+      },
+      borderWidth: {
+        1: "1px",
+      },
+      spacing: {
+        108: "28rem",
       },
     },
   },
