@@ -23,8 +23,8 @@ const Nav = ({ links, isCollapsed }: NavProps) => {
             className={cn(
               "flex items-center p-2 rounded-md",
               pathname === link.path
-                ? "text-title font-semibold  bg-primary-700"
-                : " text-grey-7 "
+                ? "text-title font-semibold bg-primary-700"
+                : "text-grey-7 hover:bg-search"
             )}
           >
             <link.icon fill={pathname === link.path && "#0D062D"} />

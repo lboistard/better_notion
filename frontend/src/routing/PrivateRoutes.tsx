@@ -7,9 +7,7 @@ import { getActions } from "@/stores/auth.store";
 const PrivateRoutes = () => {
   const { isAuth } = getActions();
 
-  return isAuth ? <Outlet /> : <Navigate to="/login" />
-  // check auth here
-  return <Navigate to="/login" />
-}
+  return isAuth ? <Outlet /> : <Navigate to="/login" />;
+};
 
 export default PrivateRoutes;
