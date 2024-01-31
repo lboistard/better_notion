@@ -1,6 +1,10 @@
 # Better notion
 Notion... but better 
+I still have a hard time organizing my tasks, and tools like Notion don't really help.
+This project is a playground for making a simple ticket organization tool, with a nice UI and state-of-the-art (I hope) MERN implementation.
 
+UI inspiration: https://www.figma.com/file/Ia18siCFgeOZGS11raE2bI/Project-Management-Dashboard-(Community)?type=design&node-id=7-242&mode=design&t=l9gSZjDL0ThXm0uz-0
+Shadcn: https://ui.shadcn.com/
 
 ## Frontend
 
