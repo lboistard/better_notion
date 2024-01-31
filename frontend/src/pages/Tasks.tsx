@@ -1,15 +1,15 @@
 import TopBar from "@/components/topbar/TopBar";
 import AppLayout from "@/layouts/AppLayout";
 
-const Home = () => {
+const Tasks = () => {
   return (
     <div className="flex">
       <AppLayout>
         <TopBar />
-        <div>home</div>
+        <div>tasks</div>
       </AppLayout>
     </div>
   );
 };
 
-export default Home;
+export default Tasks;

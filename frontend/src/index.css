@@ -19,6 +19,10 @@
   @apply relative w-fit right-[7px] top-[50%] bg-border py-1 rounded-sm text-grey-4
 }
 
+.search-input {
+  @apply block w-full p-4 ps-12 text-sm rounded-lg bg-search  focus:outline-none focus:border-1 focus:border-border
+}
+
 .user-nav {
   @apply w-60 bg-white shadow-md shadow-border rounded-md border-border border-0.5
 }

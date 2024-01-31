@@ -7,7 +7,7 @@ import {
 } from "../components/ui/resizable";
 import { cn } from "@/lib/utils";
 
-import { Nav } from "../components/sidebar/Nav";
+import Nav from "../components/sidebar/Nav";
 import { ProjectIcon } from "@/resources/icons/ProjectIcon";
 import { TaskIcon } from "@/resources/icons/TaskIcon";
 
@@ -46,12 +46,12 @@ const AppLayout = ({ children }: any) => {
               {
                 title: "Projects",
                 icon: ProjectIcon,
-                active: true,
+                path: "/",
               },
               {
                 title: "Tasks",
                 icon: TaskIcon,
-                active: false,
+                path: "/tasks",
               },
             ]}
           />

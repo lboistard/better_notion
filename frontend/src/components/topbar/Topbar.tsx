@@ -1,15 +1,3 @@
-/* eslint-disable */
-import { Avatar, AvatarImage, AvatarFallback } from "../ui/avatar";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuGroup,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuShortcut,
-  DropdownMenuTrigger,
-} from "@radix-ui/react-dropdown-menu";
 import { SearchIcon } from "@/resources/icons/SearchIcon";
 import { UserNav } from "./UserNav";
 
@@ -24,7 +12,7 @@ const TopBar = () => {
 
           <input
             type="search"
-            className="block w-full p-4 ps-12 text-sm rounded-lg bg-search  focus:outline-none focus:border-1 focus:border-border"
+            className="search-input"
             placeholder="Search for anything...."
             required
           />
