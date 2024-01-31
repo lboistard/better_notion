@@ -18,3 +18,11 @@
 .resizeHandleSidebar > div {
   @apply relative w-fit right-[7px] top-[50%] bg-border py-1 rounded-sm text-grey-4
 }
+
+.user-nav {
+  @apply w-60 bg-white shadow-md shadow-border rounded-md border-border border-0.5
+}
+
+.user-nav-item{
+  @apply flex justify-between items-center m-1 text-sm hover:bg-search focus:outline-none px-2 py-1 rounded-md cursor-pointer
+}

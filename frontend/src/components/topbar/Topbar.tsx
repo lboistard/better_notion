@@ -1,6 +1,17 @@
 /* eslint-disable */
-import { SearchIcon } from "@/resources/icons/SearchIcon";
 import { Avatar, AvatarImage, AvatarFallback } from "../ui/avatar";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuShortcut,
+  DropdownMenuTrigger,
+} from "@radix-ui/react-dropdown-menu";
+import { SearchIcon } from "@/resources/icons/SearchIcon";
+import { UserNav } from "./UserNav";
 
 const TopBar = () => {
   return (
@@ -21,16 +32,7 @@ const TopBar = () => {
       </div>
 
       <div className="flex pr-8">
-        <div className="flex items-center space-x-4">
-          <div className="flex flex-col items-end">
-            <p className="text-sm font-medium leading-none">Sofia Davis</p>
-            <p className="text-sm text-muted-foreground">m@example.com</p>
-          </div>
-          <Avatar>
-            <AvatarImage src="/avatars/01.png" />
-            <AvatarFallback>OM</AvatarFallback>
-          </Avatar>
-        </div>
+        <UserNav />
       </div>
     </div>
   );
