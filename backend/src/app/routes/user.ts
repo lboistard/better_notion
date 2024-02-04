@@ -1,8 +1,9 @@
 export {};
 
 import express from 'express';
-import passport from "passport";
 const router = express.Router();
+const passport = require("passport");
+
 
 import {
   getMe

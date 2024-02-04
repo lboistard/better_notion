@@ -63,14 +63,11 @@ export type ExtractState<S> = S extends {
 type Params<U> = Parameters<typeof useStore<typeof authStore, U>>;
 
 // Selectors
-const accessTokenSelector = (state: ExtractState<typeof authStore>) => state.accessToken;
-const refreshTokenSelector = (state: ExtractState<typeof authStore>) => state.refreshToken;
 const actionsSelector = (state: ExtractState<typeof authStore>) => state.actions;
 
 // getters
-export const getAccessToken = () => accessTokenSelector(authStore.getState());
-
-export const getRefreshToken = () => refreshTokenSelector(authStore.getState());
+export const getAccessToken = () => Cookies.get("access_token");
+export const getRefreshToken = () => Cookies.get("refresh_token");
 export const getActions = () => actionsSelector(authStore.getState());
 
 function useAuthStore<U>(selector: Params<U>[1], equalityFn?: Params<U>[2]) {
@@ -78,6 +75,4 @@ function useAuthStore<U>(selector: Params<U>[1], equalityFn?: Params<U>[2]) {
 }
 
 // Hooks
-export const useAccessToken = () => useAuthStore(accessTokenSelector);
-export const useRefreshToken = () => useAuthStore(refreshTokenSelector);
 export const useActions = () => useAuthStore(actionsSelector);

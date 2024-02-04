@@ -4,7 +4,11 @@ import oauth2orize, {
   ExchangeDoneFunction
 } from "oauth2orize";
 
+import crypto from "node:crypto";
+
 import Client from "../models/OAuth/Client";
+import RefreshToken from "../models/RefreshToken";
+import AccessToken from "../models/AccessToken";
 const User = require("../models/User");
 
 const server = oauth2orize.createServer();
@@ -32,6 +36,29 @@ server.exchange(oauth2orize.exchange.password(
 
     } catch (err: any) {
       return done(new Error(err));
+    }
+  }),
+);
+
+server.exchange(oauth2orize.exchange.refreshToken(
+  async (client: Client, refreshToken: string, scope: any, done: ExchangeDoneFunction) => {
+    try{
+
+    const token = refreshToken.split(" ")[1];
+    const _refreshToken = await RefreshToken.findOne({token});
+
+    if(!_refreshToken) return done(null, false);
+    // for now we don't check if the refresh token has still a valid date
+
+    const newAccessToken = await new AccessToken({
+      userId: _refreshToken.userId,
+      token: crypto.randomBytes(32).toString("hex")
+    }).save();
+    
+    return done(null, newAccessToken.token);
+      
+    }catch(e) {
+      return done(null, false);
     }
   }),
 );

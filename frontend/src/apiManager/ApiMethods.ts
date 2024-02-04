@@ -1,22 +1,16 @@
 import axios from "axios";
+import { getAccessToken, getRefreshToken, getActions } from "@/stores/auth.store";
 
 const BASE_URL = import.meta.env.VITE_API_ROOT;
 
 const getHeaders = () => {
-  const getToken = () => {
-    // use zustand store here
-    const token = "";
-    return token;
-  }
-
   return {
     "Content-Type": "application/json",
     "Access-Control-Allow-Origin" : "*",
     "Access-Control-Allow-Methods":"GET,PUT,POST,DELETE,PATCH,OPTIONS",
-    Authorization: `Bearer ${getToken()}`,
+    Authorization: getAccessToken(),
   }
 }
-
 
 const config = {
   baseURL: BASE_URL,
@@ -37,7 +31,25 @@ class ApiMethods {
       }).
         then((response) => response.data).
         then(resolve).
-        catch(reject);
+        catch((error) => {
+          if (error?.response?.status === 401) {
+
+            this.post("/auth/login", {
+              grant_type: "refresh_token",
+              refresh_token: getRefreshToken(),
+            }).then((response: any) => {
+              getActions().setAccessToken(response.access_token);
+            }).catch(() => {
+              getActions().clearTokens;
+              window.location.href = "/login";
+              return reject;
+            })
+          } else {
+            getActions().clearTokens;
+            window.location.href = "/login";
+            return reject;
+          }
+        });
     });
   }
 
