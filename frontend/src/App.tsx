@@ -1,4 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+/* Components */
 import PrivateRoutes from "./routing/PrivateRoutes";
 import Home from "./pages/Home";
 import Login from "./components/auth/Login";

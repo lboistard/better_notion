@@ -1,6 +1,6 @@
 import { RequestHandler } from 'express';
 
-export const getMe : RequestHandler= (req, res, next) => {
+export const getMe : RequestHandler = (req, res, next) => {
   try {
     
     const { _id, email, name } = req.user;
@@ -18,5 +18,4 @@ export const getMe : RequestHandler= (req, res, next) => {
       message: "An error occured while fetching your user"
     });
   }
-  return next();
 };

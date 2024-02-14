@@ -1,3 +1,5 @@
+import { useQuery } from "@tanstack/react-query";
+
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { Button } from "../ui/button";
 import {
@@ -10,8 +12,31 @@ import {
   DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
+import ApiManager from "@/apiManager/ApiManager";
+
+interface meI {
+  data: {
+    user: {
+      email: string;
+      name: string;
+      _id: string;
+    };
+  };
+  isLoading: boolean;
+  isError: boolean;
+  isSuccess: boolean;
+}
 
 export function UserNav() {
+  const { data, isLoading, isError }: meI = useQuery({
+    queryKey: ["me"],
+    queryFn: ApiManager.getMe,
+  });
+
+  if (isLoading) return <>loading</>;
+
+  if (isError) return <>Error</>;
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -28,9 +53,11 @@ export function UserNav() {
       <DropdownMenuContent className="user-nav" align="end" forceMount>
         <DropdownMenuLabel className="font-normal p-2">
           <div className="flex flex-col space-y-1">
-            <p className="text-sm font-medium leading-none">Lucas Boistard</p>
+            <p className="text-sm font-medium leading-none">
+              {data?.user.name}
+            </p>
             <p className="text-xs leading-none text-grey-5">
-              lucas.boistard@gmail.com
+              {data?.user?.email}
             </p>
           </div>
         </DropdownMenuLabel>

@@ -38,11 +38,14 @@ class ApiMethods {
               grant_type: "refresh_token",
               refresh_token: getRefreshToken(),
             }).then((response: any) => {
+              console.log("token : ", response)
               getActions().setAccessToken(response.access_token);
             }).catch(() => {
               getActions().clearTokens;
               window.location.href = "/login";
               return reject;
+            }).finally(() => {
+              this.apiRequest(method, url, body);
             })
           } else {
             getActions().clearTokens;
